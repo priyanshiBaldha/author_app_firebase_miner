@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../helpers/firestore_helper.dart';
 
 class Homepage extends StatefulWidget {
@@ -18,14 +17,13 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xffe63946),
+        backgroundColor: Colors.green.shade400,
         title: Text(
           'Homepage',
-          style: GoogleFonts.balooBhai2(fontSize: 25),
+          style: GoogleFonts.balooBhai2(fontSize: 30),
         ),
         centerTitle: true,
       ),
-      backgroundColor: const Color(0xfff1faee),
       body: StreamBuilder(
         stream: FireStoreHelper.fireStoreHelper.fetchBookAuthorData(),
         builder: (context, snapshot) {
@@ -45,16 +43,17 @@ class _HomepageState extends State<Homepage> {
 
                 return Container(
                   margin:
-                  const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.black12),
-                  padding: const EdgeInsets.all(5),
+                      color: Colors.green.shade100),
+                  padding: const EdgeInsets.all(20),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        height: 150,
+                        alignment: Alignment.center,
+                        height: 110,
                         width: 110,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -62,14 +61,15 @@ class _HomepageState extends State<Homepage> {
                             image: DecorationImage(
                                 image: MemoryImage(image), fit: BoxFit.cover)),
                       ),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 20),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(height: 30,),
                           Text(
                             'Author : ${data[i]['author']}',
-                            style: GoogleFonts.balooBhai2(fontSize: 17),
+                            style: GoogleFonts.balooBhai2(fontSize: 20,fontWeight: FontWeight.w500),
                           ),
                           Text(
                             'Book : ${data[i]['book']}',
@@ -85,7 +85,6 @@ class _HomepageState extends State<Homepage> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-
                                   Map res = {
                                     'id': data[i].id,
                                     'image' : image,
@@ -96,19 +95,19 @@ class _HomepageState extends State<Homepage> {
                                   Navigator.pushNamed(context, 'author_crud', arguments: res);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.redAccent),
-                                child: const Icon(Icons.edit),
+                                    backgroundColor: Colors.green.shade300),
+                                child: const Icon(Icons.edit,color: Colors.black,),
                               ),
-                              const SizedBox(width: 15),
+                              const SizedBox(width: 30),
                               OutlinedButton(
                                 onPressed: () {
                                   FireStoreHelper.fireStoreHelper.deleteBookAuthorData(id: data[i].id);
                                 },
                                 style: OutlinedButton.styleFrom(
-                                    side: const BorderSide(color: Colors.red)),
+                                    side: const BorderSide(color: Colors.green)),
                                 child: const Icon(
                                   Icons.delete,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -124,7 +123,7 @@ class _HomepageState extends State<Homepage> {
 
           return const Center(
             child: CircularProgressIndicator(
-              color: Colors.red,
+              color: Colors.green,
               backgroundColor: Colors.transparent,
             ),
           );
@@ -134,8 +133,8 @@ class _HomepageState extends State<Homepage> {
         onPressed: () {
           Navigator.of(context).pushNamed('author_page');
         },
-        backgroundColor: Colors.red,
-        child: const Icon(Icons.add),
+        backgroundColor: Colors.green.shade300,
+        child: const Icon(Icons.add,color: Colors.black,size: 40,),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,15 +29,15 @@ class _AuthorPageState extends State<AuthorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xffe63946),
+        backgroundColor: Colors.green.shade400,
         title: Text(
           'Author',
-          style: GoogleFonts.balooBhai2(fontSize: 25),
+          style: GoogleFonts.balooBhai2(fontSize: 30),
         ),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(16),
         child: Form(
           key: formKey,
           child: ListView(
@@ -49,7 +48,7 @@ class _AuthorPageState extends State<AuthorPage> {
                 child: DottedBorder(
                   color: Colors.black,
                   borderType: BorderType.RRect,
-                  strokeWidth: 1,
+                  strokeWidth: 2,
                   dashPattern: const [3],
                   radius: const Radius.circular(30),
                   child: GestureDetector(
@@ -57,7 +56,7 @@ class _AuthorPageState extends State<AuthorPage> {
                       ImagePicker picker = ImagePicker();
 
                       XFile? xFile =
-                      await picker.pickImage(source: ImageSource.camera);
+                      await picker.pickImage(source: ImageSource.gallery);
 
                       img = await xFile?.readAsBytes();
 
@@ -82,7 +81,7 @@ class _AuthorPageState extends State<AuthorPage> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Colors.black26,
+                        color: Colors.grey.shade300,
                         image: (img != null)
                             ? DecorationImage(
                           image: MemoryImage(img!),
@@ -93,7 +92,7 @@ class _AuthorPageState extends State<AuthorPage> {
                       child: (img == null)
                           ? Text(
                         'Add photo',
-                        style: GoogleFonts.habibi(fontSize: 18),
+                        style: GoogleFonts.habibi(fontSize: 22),
                       )
                           : const Text(''),
                     ),
@@ -109,9 +108,6 @@ class _AuthorPageState extends State<AuthorPage> {
                   labelText: 'Author',
                   labelStyle: GoogleFonts.balooBhai2(
                       color: Colors.black54, fontSize: 20),
-                  hintText: 'Enter Author Name',
-                  hintStyle: GoogleFonts.balooBhai2(
-                      color: Colors.black45, fontSize: 17),
                   prefixIcon: const Icon(
                     CupertinoIcons.person,
                     color: Colors.black54,
@@ -136,9 +132,6 @@ class _AuthorPageState extends State<AuthorPage> {
                   labelText: 'Book',
                   labelStyle: GoogleFonts.balooBhai2(
                       color: Colors.black54, fontSize: 20),
-                  hintText: 'Enter Book Name',
-                  hintStyle: GoogleFonts.balooBhai2(
-                      color: Colors.black45, fontSize: 17),
                   prefixIcon: const Icon(
                     CupertinoIcons.book,
                     color: Colors.black54,
@@ -163,9 +156,6 @@ class _AuthorPageState extends State<AuthorPage> {
                   labelText: 'Description',
                   labelStyle: GoogleFonts.balooBhai2(
                       color: Colors.black54, fontSize: 20),
-                  hintText: 'Enter Book Description',
-                  hintStyle: GoogleFonts.balooBhai2(
-                      color: Colors.black45, fontSize: 17),
                   prefixIcon: const Icon(
                     CupertinoIcons.news,
                     color: Colors.black54,
@@ -185,22 +175,18 @@ class _AuthorPageState extends State<AuthorPage> {
               GestureDetector(
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
-
                     String image = base64.encode(img!);
-
                     Map<String, dynamic> data = {
                       'image': image,
                       'author': authorNameController.text,
                       'book': bookNameController.text,
                       'description': bookDescriptionController.text,
                     };
-
                     DocumentReference docRef = await FireStoreHelper
                         .fireStoreHelper
                         .insertBookAuthorData(data: data);
 
                     Navigator.pop(context);
-
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Author Detail Insert...'),
@@ -216,13 +202,13 @@ class _AuthorPageState extends State<AuthorPage> {
                   alignment: Alignment.center,
                   margin: const EdgeInsets.symmetric(horizontal: 50),
                   decoration: BoxDecoration(
-                      color: const Color(0xffe63946),
+                      color: Colors.green.shade400,
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.black54)),
+                      border: Border.all(color: Colors.black,width: 3)),
                   child: Text(
                     'Add Book',
                     style: GoogleFonts.balooBhai2(
-                        fontSize: 20, color: Colors.white),
+                        fontSize: 27, color: Colors.black),
                   ),
                 ),
               )

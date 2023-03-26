@@ -37,7 +37,7 @@ class _AuthorCrudState extends State<AuthorCrud> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xffe63946),
+        backgroundColor: Colors.green.shade400,
         title: Text(
           'Author',
           style: GoogleFonts.balooBhai2(fontSize: 25),
@@ -56,7 +56,7 @@ class _AuthorCrudState extends State<AuthorCrud> {
                 child: DottedBorder(
                   color: Colors.black,
                   borderType: BorderType.RRect,
-                  strokeWidth: 1,
+                  strokeWidth: 2,
                   dashPattern: const [3],
                   radius: const Radius.circular(30),
                   child: GestureDetector(
@@ -116,9 +116,6 @@ class _AuthorCrudState extends State<AuthorCrud> {
                   labelText: 'Author',
                   labelStyle: GoogleFonts.balooBhai2(
                       color: Colors.black54, fontSize: 20),
-                  hintText: 'Enter Author Name',
-                  hintStyle: GoogleFonts.balooBhai2(
-                      color: Colors.black45, fontSize: 17),
                   prefixIcon: const Icon(
                     CupertinoIcons.person,
                     color: Colors.black54,
@@ -143,9 +140,6 @@ class _AuthorCrudState extends State<AuthorCrud> {
                   labelText: 'Book',
                   labelStyle: GoogleFonts.balooBhai2(
                       color: Colors.black54, fontSize: 20),
-                  hintText: 'Enter Book Name',
-                  hintStyle: GoogleFonts.balooBhai2(
-                      color: Colors.black45, fontSize: 17),
                   prefixIcon: const Icon(
                     CupertinoIcons.book,
                     color: Colors.black54,
@@ -170,9 +164,6 @@ class _AuthorCrudState extends State<AuthorCrud> {
                   labelText: 'Description',
                   labelStyle: GoogleFonts.balooBhai2(
                       color: Colors.black54, fontSize: 20),
-                  hintText: 'Enter Book Description',
-                  hintStyle: GoogleFonts.balooBhai2(
-                      color: Colors.black45, fontSize: 17),
                   prefixIcon: const Icon(
                     CupertinoIcons.news,
                     color: Colors.black54,
@@ -223,13 +214,13 @@ class _AuthorCrudState extends State<AuthorCrud> {
                   alignment: Alignment.center,
                   margin: const EdgeInsets.symmetric(horizontal: 50),
                   decoration: BoxDecoration(
-                      color: const Color(0xffe63946),
+                      color: Colors.green.shade400,
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.black54)),
+                      border: Border.all(color: Colors.black,width: 3)),
                   child: Text(
                     'Update Book',
                     style: GoogleFonts.balooBhai2(
-                        fontSize: 20, color: Colors.white),
+                        fontSize: 27, color: Colors.black),
                   ),
                 ),
               )
